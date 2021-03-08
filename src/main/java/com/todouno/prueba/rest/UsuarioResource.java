@@ -1,5 +1,7 @@
 package com.todouno.prueba.rest;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -34,7 +36,7 @@ public class UsuarioResource {
 	 * @return
 	 */
 	@GET
-	@Path(value = "/auth")
+	@Path(value = "auth")
 	public Response autenticar(String usuario, String contrasenia) {
 
 		Usuario u = srvUsuario.obtenerUsuario(usuario);
@@ -60,6 +62,7 @@ public class UsuarioResource {
 	 */
 	@POST
 	public Response registrarUsuario(Usuario usuario) {
+		
 		Usuario u = srvUsuario.obtenerUsuario(usuario.getUsuario());
 
 		if (null != u) {
@@ -72,8 +75,20 @@ public class UsuarioResource {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	@GET
+	@Path(value = "todos")
+	public Response obtenerUsuarioActivos() {
+		List<Usuario> lstUsuarios = srvUsuario.obtenerUsuariosActivos();
+		return Response.status(Response.Status.OK).entity(lstUsuarios).build();
+
+	}
+
 	@POST
-	@Path(value = "/rol")
+	@Path(value = "rol")
 	public Response registrarRolUsuario(UsuarioRol usuarioRol) {
 
 		if (srvUsuario.exiteUsuarioEnRol(usuarioRol)) {

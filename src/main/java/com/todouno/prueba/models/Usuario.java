@@ -42,7 +42,7 @@ public class Usuario extends Auditoria {
 	private TipoIdentificacion tipoIdentificacion;
 
 	@Column(name = "st_usu_identificacion")
-	private String identificaicion;
+	private String identificacion;
 
 	@Column(name = "st_usu_tpo_nombres")
 	private String nombres;

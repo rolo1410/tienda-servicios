@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "st_producto")
-@NamedQueries({ @NamedQuery(name = "Producto.id", query = "SELECT p FROM Producto p WHERE p.id= :id"),
+@NamedQueries({ @NamedQuery(name = "Producto.porId", query = "SELECT p FROM Producto p WHERE p.id= :id"),
 		@NamedQuery(name = "Producto.disponibles", query = "SELECT p FROM Producto p WHERE p.numeroUnidades>0 ORDER BY p.nombreProducto"),
 		@NamedQuery(name = "Producto.porNombre", query = "SELECT p FROM Producto p WHERE p.nombreProducto like :nombreProducto"),
 		@NamedQuery(name = "Producto.todos", query = "SELECT p FROM Producto p WHERE p.estado=1") })
@@ -47,9 +47,8 @@ public class Producto extends Auditoria {
 
 	@Column(name = "st_pro_num_unidades")
 	private Long numeroUnidades;
-	
-	
-	@Column(name = "st_pro_url_imagen")
-	private  String urlImagen ;
+
+	@Column(name = "st_pro_url_imagen", columnDefinition = "TEXT")
+	private String urlImagen;
 
 }

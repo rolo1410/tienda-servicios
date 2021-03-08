@@ -1,5 +1,6 @@
 package com.todouno.prueba.repository;
 
+import java.util.List;
 import java.util.function.Function;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -52,8 +53,20 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
 
 	}
 
-	
-	
+	/**
+	 * 
+	 * @param usuario
+	 * @return
+	 */
+	public List<Usuario> obtenerUsuariosActivos() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT u FROM Usuario u WHERE u.estado=1");
+		TypedQuery<Usuario> q = em.createQuery(sb.toString(), Usuario.class);
+		return q.getResultList();
+
+	}
+
 	/**
 	 * 
 	 * @param usuario

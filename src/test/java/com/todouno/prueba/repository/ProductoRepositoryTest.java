@@ -36,16 +36,13 @@ public class ProductoRepositoryTest {
 
 		/* actualizo */
 		Producto emuladoNuevo = Producto.builder().descripcion("BORRAR_PRUEBA_UPDATE")
-				.nombreProducto("BORRAR_PRUEBA_UPDATE").id(pNuevo.getId()).build();
+				.nombreProducto("BORRAR_PRUEBA_UPDATE").id(null).build();
 		emuladoNuevo=	productoRepository.crearActualizar(emuladoNuevo);
 
 		Assertions.assertTrue(null != emuladoNuevo.getId()
 				&& StringUtils.equals("BORRAR_PRUEBA_UPDATE", emuladoNuevo.getDescripcion()));
 	}
 
-	void buscarProducto() {
-
-	}
 
 	@Test
 	@Transactional
